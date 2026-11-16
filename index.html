@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masterarbeit Ramon Füglister</title>
+<meta name="description" content="Masterarbeit zu Certainty-Based Marking (CBM). Die fertige Arbeit und eine kurze Präsentation der Ergebnisse erscheinen hier bis Ende Februar 2027.">
+<style>
+  :root {
+    --bg: #f6f8fb; --card: #ffffff; --panel: #eef3f8; --ink: #1a1a1a; --muted: #5f6b76;
+    --accent: #1f4e79; --accent-soft: rgba(31, 78, 121, .16); --line: #d8dde3; --done: #2e7d5b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1720; --card: #16212d; --panel: #1b2937; --ink: #e8edf2; --muted: #9aa8b5;
+      --accent: #7fb2e5; --accent-soft: rgba(127, 178, 229, .2); --line: #2a3a4a; --done: #6cc59b;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 64px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
+  h1 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); line-height: 1.2; margin: 0 0 14px; }
+  .rule { width: 72px; height: 3px; background: var(--accent); border-radius: 2px; margin: 0 0 28px; transform-origin: left; animation: grow .9s ease-out both; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px; margin-bottom: 22px; }
+  .hero { display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: center; background: var(--panel); border: 0; }
+  .hero h2 { margin: 0 0 6px; font-size: 1.45rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero p { margin: 0 0 18px; color: var(--muted); }
+  .dots { display: inline-flex; gap: 6px; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: bounce 1.2s ease-in-out infinite; }
+  .dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+  .bar { position: relative; height: 10px; border-radius: 5px; background: var(--line); overflow: hidden; }
+  .bar span { position: absolute; inset: 0 auto 0 0; width: 34%; border-radius: 5px; background: var(--accent); animation: slide 2.6s ease-in-out infinite; }
+  /* Blatt mit Zeilen, die geschrieben werden */
+  .sheet { position: relative; width: 170px; height: 200px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 26px 20px; }
+  .sheet .head { height: 10px; width: 62%; background: var(--accent); border-radius: 3px; margin-bottom: 24px; }
+  .sheet .ln { height: 7px; background: var(--accent-soft); border-radius: 3px; margin-bottom: 21px; transform-origin: left; animation: write 5s ease-in-out infinite; }
+  .sheet .ln:nth-child(3) { animation-delay: .7s; } .sheet .ln:nth-child(4) { animation-delay: 1.4s; width: 80%; } .sheet .ln:nth-child(5) { animation-delay: 2.1s; width: 55%; }
+  .pen { position: absolute; left: 22px; top: 52px; width: 9px; height: 34px; background: var(--accent); border-radius: 2px; transform-origin: bottom center; animation: pen 5s ease-in-out infinite; }
+  .pen::after { content: ""; position: absolute; left: 0; bottom: -9px; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-top: 9px solid var(--ink); }
+  h3 { margin: 0 0 18px; font-size: 1.1rem; color: var(--accent); }
+  .steps { list-style: none; margin: 0; padding: 0; position: relative; }
+  .steps::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 34px; width: 2px; background: var(--line); }
+  .steps li { position: relative; padding: 0 0 18px 40px; opacity: 0; animation: fadein .6s ease-out forwards; }
+  .steps li:last-child { padding-bottom: 0; }
+  .steps li::before { content: ""; position: absolute; left: 4px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--card); border: 2px solid var(--line); }
+  .steps li.done::before { background: var(--done); border-color: var(--done); }
+  .steps li.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 0 var(--accent-soft); animation: pulse 1.8s ease-out infinite; }
+  .steps b { display: block; }
+  .steps small { color: var(--muted); font-size: .92rem; }
+  .thanks { text-align: center; background: var(--panel); border: 0; }
+  .thanks p { margin: 0; }
+  .thanks .big { font-size: 1.35rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  footer { color: var(--muted); font-size: .9rem; text-align: center; margin-top: 28px; }
+  footer a { color: var(--accent); }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-6px); opacity: 1; } }
+  @keyframes slide { 0% { left: -34%; } 100% { left: 100%; } }
+  @keyframes write { 0% { transform: scaleX(0); } 35%, 85% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes pen {
+    0% { transform: translate(0, 0) rotate(35deg); } 25% { transform: translate(105px, 0) rotate(35deg); }
+    33% { transform: translate(0, 28px) rotate(35deg); } 55% { transform: translate(105px, 28px) rotate(35deg); }
+    63% { transform: translate(0, 56px) rotate(35deg); } 80% { transform: translate(80px, 56px) rotate(35deg); }
+    100% { transform: translate(0, 0) rotate(35deg); }
+  }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft); } 100% { box-shadow: 0 0 0 10px transparent; } }
+  @media (max-width: 560px) {
+    main { padding-top: 36px; }
+    .card { padding: 22px 18px; }
+    .hero { grid-template-columns: 1fr; justify-items: center; text-align: left; }
+    .hero > div:last-child { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+    .steps li { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Masterarbeit · FernUni Schweiz</p>
+  <h1>Einfluss von CBM auf metakognitive Kalibrierung, Lernleistung und Motivation</h1>
+  <div class="rule"></div>
+
+  <section class="card hero" aria-label="Stand der Arbeit">
+    <div class="sheet" aria-hidden="true">
+      <div class="head"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+      <div class="pen"></div>
+    </div>
+    <div>
+      <h2>Die Arbeit entsteht gerade <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+      <p>Die fertige Arbeit und eine kurze Präsentation der Ergebnisse finden Sie hier bis Ende Februar 2027.</p>
+      <div class="bar" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Ablauf">
+    <h3>Ablauf</h3>
+    <ol class="steps" id="steps">
+      <li data-date="2026-10-06"><b>Test 1</b><small>6. Oktober 2026</small></li>
+      <li data-date="2026-10-28"><b>Test 2</b><small>28. Oktober 2026</small></li>
+      <li data-date="2026-11-24"><b>Test 3</b><small>24. November 2026</small></li>
+      <li data-date="2026-12-16" data-end="2027-02-28"><b>Auswertung und Schreiben</b><small>Dezember 2026 bis Februar 2027</small></li>
+      <li data-date="2027-02-28"><b>Fertige Arbeit und Ergebnisse auf dieser Seite</b><small>bis Ende Februar 2027</small></li>
+    </ol>
+  </section>
+
+  <section class="card thanks">
+    <p class="big">Vielen Dank für Ihre Teilnahme!</p>
+    <p>Ohne die Studierenden der Klasse wäre diese Masterarbeit nicht möglich gewesen.</p>
+  </section>
+
+  <footer>
+    Ramon Füglister · ZAG Winterthur · <a href="mailto:ramon.fueglister@zag.zh.ch">ramon.fueglister@zag.zh.ch</a>
+  </footer>
+</main>
+<script>
+  // Schritte nach Datum markieren: vorbei = erledigt, der nächste offene Schritt = aktuell.
+  (function () {
+    var items = document.querySelectorAll('#steps li');
+    var today = new Date();
+    var marked = false;
+    items.forEach(function (li, i) {
+      li.style.animationDelay = (0.15 + i * 0.12) + 's';
+      var end = new Date((li.getAttribute('data-end') || li.getAttribute('data-date')) + 'T23:59:59');
+      if (today > end) li.classList.add('done');
+      else if (!marked) { li.classList.add('now'); marked = true; }
+    });
+  })();
+</script>
+</body>
+</html>

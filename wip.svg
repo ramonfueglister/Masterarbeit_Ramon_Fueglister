@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280" role="img" aria-label="Masterarbeit in Arbeit">
+  <style>
+    .t { font-family: Helvetica, Arial, sans-serif; }
+    .line { fill: #1f4e79; opacity: .18; transform-box: fill-box; transform-origin: left; animation: write 4.8s ease-in-out infinite; }
+    .l2 { animation-delay: .6s; } .l3 { animation-delay: 1.2s; } .l4 { animation-delay: 1.8s; }
+    @keyframes write { 0% { transform: scaleX(0); } 35%, 80% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
+    .pen { animation: pen 4.8s ease-in-out infinite; }
+    @keyframes pen { 0% { transform: translate(0,0); } 35% { transform: translate(150px,0); } 45% { transform: translate(0,28px); } 60% { transform: translate(150px,28px); } 70% { transform: translate(0,56px); } 85% { transform: translate(120px,56px); } 100% { transform: translate(0,0); } }
+    .bar { fill: #1f4e79; animation: bar 2.6s ease-in-out infinite; }
+    @keyframes bar { 0% { transform: translateX(-160px); } 100% { transform: translateX(520px); } }
+    .dot { fill: #1f4e79; animation: bounce 1.2s ease-in-out infinite; }
+    .d2 { animation-delay: .2s; } .d3 { animation-delay: .4s; }
+    @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-7px); opacity: 1; } }
+  </style>
+  <rect width="800" height="280" rx="18" fill="#eef3f8"/>
+  <!-- Blatt mit Zeilen, die geschrieben werden -->
+  <g transform="translate(48,44)">
+    <rect width="200" height="192" rx="10" fill="#ffffff" stroke="#d8dde3"/>
+    <rect x="24" y="30" width="110" height="10" rx="3" fill="#1f4e79" opacity=".85"/>
+    <rect class="line" x="24" y="64" width="150" height="7" rx="3"/>
+    <rect class="line l2" x="24" y="92" width="150" height="7" rx="3"/>
+    <rect class="line l3" x="24" y="120" width="120" height="7" rx="3"/>
+    <rect class="line l4" x="24" y="148" width="90" height="7" rx="3"/>
+    <g class="pen"><g transform="translate(20,40) rotate(35)">
+      <rect width="8" height="30" rx="2" fill="#1f4e79"/><polygon points="0,30 8,30 4,40" fill="#1a1a1a"/>
+    </g></g>
+  </g>
+  <!-- Text -->
+  <text class="t" x="290" y="102" font-size="30" font-weight="700" fill="#1a1a1a">Masterarbeit in Arbeit</text>
+  <circle class="dot" cx="626" cy="96" r="4.5"/><circle class="dot d2" cx="642" cy="96" r="4.5"/><circle class="dot d3" cx="658" cy="96" r="4.5"/>
+  <text class="t" x="290" y="138" font-size="16" fill="#1f4e79">Einfluss von CBM auf metakognitive Kalibrierung,</text>
+  <text class="t" x="290" y="160" font-size="16" fill="#1f4e79">Lernleistung und Motivation</text>
+  <!-- Fortschrittsbalken -->
+  <clipPath id="c"><rect x="290" y="188" width="440" height="10" rx="5"/></clipPath>
+  <rect x="290" y="188" width="440" height="10" rx="5" fill="#d8dde3"/>
+  <g clip-path="url(#c)"><rect class="bar" x="290" y="188" width="140" height="10" rx="5"/></g>
+  <text class="t" x="290" y="228" font-size="14" fill="#6b6b6b">Arbeit und Ergebnisse folgen bis Ende Februar 2027.</text>
+</svg>

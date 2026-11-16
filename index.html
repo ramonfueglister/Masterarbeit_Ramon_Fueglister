@@ -2,261 +2,527 @@
 <html lang="de-CH">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Masterarbeit Ramon Füglister</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Masterarbeit zu Certainty-Based Marking (CBM). Die fertige Arbeit und eine kurze Präsentation der Ergebnisse erscheinen hier bis Ende Februar 2027.">
+<title>Masterarbeit Ramon Füglister</title>
 <style>
+  /* Layout: eine Bilderbuch-Szene oben, darunter linksbündiger Text in einer Spalte.
+     Der Ablauf ist ein Bambushalm, auf dem ein kleiner Panda bis zum heutigen Stand läuft. */
   :root {
-    --bg: #f6f8fb; --card: #ffffff; --panel: #eef3f8; --ink: #1a1a1a; --muted: #5f6b76;
-    --accent: #1f4e79; --accent-soft: rgba(31, 78, 121, .16); --line: #d8dde3; --done: #2e7d5b;
-    --bamboo: #6aa84f; --bamboo-dark: #4f8a38; --desk: #d9b48a; --desk-edge: #c39a6c;
-    --panda-edge: #e3e6ea; --blush: #f7a8b8;
+    --paper: #f2f7ef; --card: #ffffff; --tint: #e3f0de; --ink: #18261d; --muted: #56685b; --line: #d3e1cf;
+    --accent: #3a7636; --on-accent: #ffffff;
+    --bamboo: #62a455; --bamboo-deep: #3f7c3b; --leaf: #93c877; --bamboo-far: #acd49f;
+    --sky-top: #c9e8f2; --sky-bot: #f2f8e2; --hill-far: #c2e2b6; --hill-near: #a6d397; --grass: #88c176; --grass-deep: #6aa85b;
+    --cloud: #ffffff; --cloud-o: .95; --sun: #ffd666; --sun-ray: #ffe6a0; --moon: #f5f0cf; --glow: #f8e77a; --day: 1; --night: 0;
+    --fur: #ffffff; --patch: #23272d; --fur-edge: #dbe3de; --blush: #f6a6b6; --heart: #e8657e; --glasses: #d39a2e;
+    --wood: #e0bd94; --wood-edge: #c99f70; --wood-dark: #ad8355;
+    --mug: #2f5f8f; --book-a: #e8657e; --book-b: #2f5f8f; --book-c: #f2c14e; --sheet: #ffffff; --pencil: #f2c14e;
+    --bubble: #ffffff; --bubble-ink: #18261d; --shadow: 0 14px 34px rgba(24, 38, 29, .12);
+    --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0f1720; --card: #16212d; --panel: #1b2937; --ink: #e8edf2; --muted: #9aa8b5;
-      --accent: #7fb2e5; --accent-soft: rgba(127, 178, 229, .2); --line: #2a3a4a; --done: #6cc59b;
-      --desk: #8a6a4a; --desk-edge: #6f533a; --panda-edge: #5a6b7c;
+      --paper: #0d1813; --card: #14231c; --tint: #172a20; --ink: #e7f0e9; --muted: #9bb1a2; --line: #27402f;
+      --accent: #8fce7a; --on-accent: #0d1813;
+      --bamboo: #5c9b51; --bamboo-deep: #2f5f31; --leaf: #7fb76a; --bamboo-far: #2c5642;
+      --sky-top: #0a1430; --sky-bot: #1a3a46; --hill-far: #1c4740; --hill-near: #193e32; --grass: #1d4a31; --grass-deep: #2a6340;
+      --cloud: #40557a; --cloud-o: .5; --sun: #ffd666; --sun-ray: #ffe6a0; --moon: #f5f0cf; --glow: #f8e77a; --day: 0; --night: 1;
+      --fur: #f3f6f4; --patch: #0e1116; --fur-edge: #6f877a; --blush: #f6a6b6; --heart: #ee7a90; --glasses: #e6bd5c;
+      --wood: #8d6c4c; --wood-edge: #73563b; --wood-dark: #5b432d;
+      --mug: #7fb2e5; --book-a: #d9627a; --book-b: #7fb2e5; --book-c: #d9ad45; --sheet: #eef2ef; --pencil: #e6b84a;
+      --bubble: #f3f6f4; --bubble-ink: #18261d; --shadow: 0 14px 34px rgba(0, 0, 0, .4);
+      color-scheme: dark;
     }
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  :root[data-theme="dark"] {
+    --paper: #0d1813; --card: #14231c; --tint: #172a20; --ink: #e7f0e9; --muted: #9bb1a2; --line: #27402f;
+    --accent: #8fce7a; --on-accent: #0d1813;
+    --bamboo: #5c9b51; --bamboo-deep: #2f5f31; --leaf: #7fb76a; --bamboo-far: #2c5642;
+    --sky-top: #0a1430; --sky-bot: #1a3a46; --hill-far: #1c4740; --hill-near: #193e32; --grass: #1d4a31; --grass-deep: #2a6340;
+    --cloud: #40557a; --cloud-o: .5; --sun: #ffd666; --sun-ray: #ffe6a0; --moon: #f5f0cf; --glow: #f8e77a; --day: 0; --night: 1;
+    --fur: #f3f6f4; --patch: #0e1116; --fur-edge: #6f877a; --blush: #f6a6b6; --heart: #ee7a90; --glasses: #e6bd5c;
+    --wood: #8d6c4c; --wood-edge: #73563b; --wood-dark: #5b432d;
+    --mug: #7fb2e5; --book-a: #d9627a; --book-b: #7fb2e5; --book-c: #d9ad45; --sheet: #eef2ef; --pencil: #e6b84a;
+    --bubble: #f3f6f4; --bubble-ink: #18261d; --shadow: 0 14px 34px rgba(0, 0, 0, .4);
+    color-scheme: dark;
   }
-  main { max-width: 780px; margin: 0 auto; padding: 56px 20px 64px; }
-  .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
-  h1 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); line-height: 1.2; margin: 0 0 14px; }
-  .rule { width: 72px; height: 3px; background: var(--accent); border-radius: 2px; margin: 0 0 28px; transform-origin: left; animation: grow .9s ease-out both; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px; margin-bottom: 22px; }
 
-  /* Hero mit Panda */
-  .hero { display: grid; grid-template-columns: 250px 1fr; gap: 26px; align-items: center; background: var(--panel); border: 0; overflow: hidden; }
-  .hero h2 { margin: 0 0 4px; font-size: 1.5rem; line-height: 1.25; }
-  .status { margin: 0 0 18px; color: var(--muted); min-height: 1.6em; }
-  .status span { display: inline-block; transition: opacity .35s, transform .35s; }
-  .status span.out { opacity: 0; transform: translateY(6px); }
-  .hero .when { margin: 0 0 20px; }
-  .scene { width: 100%; max-width: 250px; height: auto; display: block; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap {
+    max-width: 760px; margin-inline: auto; padding-block: 44px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; gap: 30px;
+  }
+  .wrap > * { min-width: 0; animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .wrap > :nth-child(2) { animation-delay: .08s; } .wrap > :nth-child(3) { animation-delay: .16s; }
+  .wrap > :nth-child(4) { animation-delay: .24s; } .wrap > :nth-child(5) { animation-delay: .32s; } .wrap > :nth-child(6) { animation-delay: .4s; }
+  h1, h2, .steps b, .bubble { font-family: var(--display); }
+  h1, h2, p { margin: 0; }
+  h1, h2 { text-wrap: balance; letter-spacing: -.01em; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+  h1 { font-size: clamp(1.7rem, 5vw, 2.55rem); line-height: 1.14; font-weight: 800; }
+  h2 { font-size: 1.45rem; line-height: 1.25; font-weight: 800; }
+  .lead { display: grid; gap: 8px; }
+  .lead p { max-width: 60ch; }
 
-  /* Panda-Animationen */
-  .head { animation: bob 2.4s ease-in-out infinite; transform-origin: 120px 140px; }
-  .eye { animation: blink 4.2s infinite; transform-box: fill-box; transform-origin: center; }
-  .ear { animation: wiggle 4.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center bottom; }
-  .ear.r { animation-delay: .25s; }
-  .arm { animation: scribble .5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 20% 50%; }
-  .ink { transform-box: fill-box; transform-origin: left; animation: write 4s ease-in-out infinite; }
-  .ink.b { animation-delay: .9s; } .ink.c { animation-delay: 1.8s; }
-  .bamboo { animation: sway 3.6s ease-in-out infinite; transform-origin: 24px 200px; }
-  .steam { animation: steam 2.4s ease-out infinite; opacity: 0; }
-  .steam.b { animation-delay: 1.2s; }
-  .fly { animation: fly 5s ease-in infinite; opacity: 0; transform-box: fill-box; transform-origin: center; }
-  .heart { animation: heart 5s ease-out infinite; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  /* Szene */
+  figure { margin: 0; display: grid; gap: 8px; }
+  .stage { position: relative; aspect-ratio: 720 / 420; border-radius: 28px; overflow: hidden; background: var(--sky-bot); box-shadow: var(--shadow); cursor: pointer; isolation: isolate; -webkit-tap-highlight-color: transparent; user-select: none; }
+  .stage:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  figcaption { color: var(--muted); font-size: .85rem; }
+  .bubble {
+    position: absolute; left: 60.5%; top: 7%; width: 14.2em; min-height: 3.5em; padding: .6em .9em; display: flex; align-items: center;
+    background: var(--bubble); color: var(--bubble-ink); border-radius: 18px; font-size: .95rem; font-weight: 700; line-height: 1.3;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .14); animation: bubble 4s ease-in-out infinite; z-index: 2;
+  }
+  .bubble::after { content: ""; position: absolute; left: 20px; bottom: -7px; width: 18px; height: 18px; background: inherit; transform: rotate(45deg); border-radius: 3px; z-index: -1; }
+  .caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; background: currentColor; vertical-align: -.15em; animation: caret .9s steps(1) infinite; }
+  .pop { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; pointer-events: none; z-index: 3; animation: pop 1s ease-out both; }
+  .pop svg { width: 100%; height: 100%; display: block; fill: var(--heart); }
 
-  /* Rollender Mini-Panda auf dem Bambus-Balken */
-  .track { position: relative; height: 34px; }
-  .track::before { content: ""; position: absolute; left: 0; right: 0; top: 22px; height: 8px; border-radius: 4px;
-    background: repeating-linear-gradient(90deg, var(--bamboo) 0 46px, var(--bamboo-dark) 46px 49px); }
-  .roller { position: absolute; top: 0; left: 0; width: 26px; height: 26px; animation: roll 4.5s ease-in-out infinite alternate; }
-  .roller svg { width: 26px; height: 26px; animation: spin 4.5s ease-in-out infinite alternate; }
+  .scene .day { opacity: var(--day); } .scene .night { opacity: var(--night); }
+  .rays { animation: spin 46s linear infinite; }
+  .sun { animation: glow 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .star { animation: twinkle 3.4s ease-in-out infinite; }
+  .cloud { opacity: var(--cloud-o); animation: drift 80s linear infinite; }
+  .c1 { animation-delay: -22s; } .c2 { animation-duration: 105s; animation-delay: -70s; } .c3 { animation-duration: 130s; animation-delay: -36s; }
+  .sway { animation: sway 5s ease-in-out infinite alternate; }
+  .flutter { animation: flutter 2.8s ease-in-out infinite alternate; }
+  .fall { animation: fall 12s linear infinite; }
+  .butterfly { animation: flutterby 15s ease-in-out infinite; }
+  .wing { transform-box: fill-box; animation: flap .26s ease-in-out infinite alternate; }
+  .wing.l { transform-origin: right center; } .wing.r { transform-origin: left center; }
+  .fly { animation: firefly 5s ease-in-out infinite; }
+  .climber { animation: climb 7.5s ease-in-out infinite; }
+  .climber-head { transform-box: fill-box; transform-origin: 50% 100%; animation: tilt 3.4s ease-in-out infinite alternate; }
+  .body { transform-origin: 360px 394px; animation: breathe 3.6s ease-in-out infinite; }
+  .head { transform-origin: 360px 258px; animation: nod 5.2s ease-in-out infinite; }
+  .ear { transform-box: fill-box; transform-origin: 50% 90%; animation: wiggle 5.5s ease-in-out infinite; }
+  .ear.r { animation-delay: .22s; }
+  .eye { transform-box: fill-box; transform-origin: center; animation: blink 4.6s infinite; }
+  .idle { animation: glance 9s ease-in-out infinite; }
+  .stage.tracking .idle { animation: none; }
+  .arm { transform-origin: 424px 268px; animation: scribble .3s ease-in-out infinite alternate; }
+  .steam { fill: none; stroke: var(--muted); stroke-width: 2.4; stroke-linecap: round; opacity: 0; animation: steam 2.8s ease-out infinite; }
+  .steam.b { animation-delay: 1.4s; }
+  .ink { stroke-dasharray: 1 1.3; stroke-dashoffset: 0; animation: ink1 7s linear infinite; }
+  .ink.i2 { animation-name: ink2; } .ink.i3 { animation-name: ink3; }
+  .flysheet { opacity: 0; transform-box: fill-box; transform-origin: center; animation: flyoff 7s ease-in infinite; }
+  .stage.happy .hopper { animation: hop .7s cubic-bezier(.3, 1.5, .5, 1); }
 
-  h3 { margin: 0 0 18px; font-size: 1.1rem; color: var(--accent); }
-  .steps { list-style: none; margin: 0; padding: 0; position: relative; }
-  .steps::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 34px; width: 2px; background: var(--line); }
-  .steps li { position: relative; padding: 0 0 18px 40px; opacity: 0; animation: fadein .6s ease-out forwards; }
-  .steps li:last-child { padding-bottom: 0; }
-  .steps li::before { content: ""; position: absolute; left: 2px; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--card); border: 2px solid var(--line); }
-  .steps li.done::before { background: var(--done); border-color: var(--done); }
-  .steps li.done::after { content: "✓"; position: absolute; left: 7px; top: 2px; color: #fff; font-size: 13px; font-weight: 700; }
-  .steps li.now::before { background: var(--accent); border-color: var(--accent); animation: pulse 1.8s ease-out infinite; }
-  .steps b { display: block; }
-  .steps small { color: var(--muted); font-size: .92rem; }
+  /* Ablauf als Bambushalm */
+  .path { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 26px 28px 28px; display: grid; gap: 14px; }
+  .trail { --dir: h; position: relative; padding-top: 78px; }
+  .stalk { position: absolute; left: 0; right: 0; top: 38px; height: 12px; border-radius: 6px; overflow: hidden; background: repeating-linear-gradient(90deg, var(--bamboo-far) 0 60px, var(--line) 60px 63px); }
+  .grown { position: absolute; left: 0; top: 0; bottom: 0; width: var(--pos, 60%); border-radius: 6px; background: repeating-linear-gradient(90deg, var(--bamboo) 0 60px, var(--bamboo-deep) 60px 63px); }
+  .walker { position: absolute; top: -4px; left: calc(var(--pos, 60%) - 22px); width: 44px; height: 44px; z-index: 2; pointer-events: none; }
+  .walker svg { width: 100%; height: 100%; display: block; transform-origin: 50% 100%; animation: bob 2.4s ease-in-out infinite; }
+  .trail.go .grown { transition: width 2.6s cubic-bezier(.45, .05, .3, 1); }
+  .trail.go .walker { transition: left 2.6s cubic-bezier(.45, .05, .3, 1); }
+  .trail.walking .walker svg { animation: waddle .34s ease-in-out infinite alternate; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .steps li { position: relative; min-width: 0; display: grid; gap: 2px; align-content: start; }
+  .steps li::before { content: ""; position: absolute; left: 0; top: -45px; width: 22px; height: 22px; border-radius: 50%; background: var(--card); border: 3px solid var(--bamboo-far); z-index: 1; }
+  .steps li.done::before { background: var(--accent); border-color: var(--accent); }
+  .steps li.done::after { content: ""; position: absolute; left: 7.5px; top: -41px; width: 7px; height: 11px; border: solid var(--on-accent); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); z-index: 1; }
+  .steps li.now::before { border-color: var(--heart); background: radial-gradient(circle, var(--heart) 0 4px, var(--card) 4.6px); animation: pulse 1.8s ease-out infinite; }
+  .steps b { font-size: 1rem; line-height: 1.25; font-weight: 700; }
+  .steps small { color: var(--muted); font-size: .86rem; line-height: 1.35; }
+  .steps li.now b { color: var(--accent); }
 
-  .thanks { display: flex; align-items: center; gap: 18px; background: var(--panel); border: 0; }
-  .thanks svg { flex: 0 0 auto; width: 74px; height: 74px; }
-  .thanks .wave { animation: wave 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 30% 90%; }
-  .thanks p { margin: 0; }
-  .thanks .big { font-size: 1.35rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
-  footer { color: var(--muted); font-size: .9rem; text-align: center; margin-top: 28px; }
-  footer a { color: var(--accent); }
-  footer .joke { display: block; margin-top: 6px; font-size: .82rem; opacity: .8; }
+  /* Dank */
+  .thanks { display: flex; align-items: center; gap: 20px; background: var(--tint); border-radius: 24px; padding: 22px 28px; }
+  .thanks > div { display: grid; gap: 6px; min-width: 0; }
+  .waver { flex: 0 0 auto; width: 96px; height: 90px; margin-left: auto; overflow: visible; }
+  .waver .paw { transform-box: fill-box; transform-origin: 30% 95%; animation: wave 1.3s ease-in-out infinite; }
+  .waver .h { opacity: 0; animation: floatheart 3.2s ease-out infinite; }
+  .waver .h2 { animation-delay: 1.6s; }
+  .waver .eye { animation-duration: 3.8s; }
 
-  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(2px) rotate(-2deg); } }
-  @keyframes blink { 0%, 90%, 100% { transform: scaleY(1); } 93%, 95% { transform: scaleY(.1); } }
-  @keyframes wiggle { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(-10deg); } 80% { transform: rotate(8deg); } 85% { transform: rotate(0); } }
-  @keyframes scribble { from { transform: translateX(-5px) rotate(-4deg); } to { transform: translateX(5px) rotate(4deg); } }
-  @keyframes write { 0% { transform: scaleX(0); } 40%, 85% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
-  @keyframes sway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(3deg); } }
-  @keyframes steam { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: .7; } 100% { opacity: 0; transform: translateY(-16px); } }
-  @keyframes fly { 0%, 55% { opacity: 0; transform: translate(0, 0) rotate(0); } 60% { opacity: 1; } 100% { opacity: 0; transform: translate(40px, -70px) rotate(40deg); } }
-  @keyframes heart { 0%, 20% { opacity: 0; transform: translateY(0) scale(.6); } 28% { opacity: 1; transform: translateY(-6px) scale(1); } 45% { opacity: 0; transform: translateY(-22px) scale(1.1); } 100% { opacity: 0; } }
-  @keyframes roll { from { left: 0; } to { left: calc(100% - 26px); } }
-  @keyframes spin { from { transform: rotate(0); } to { transform: rotate(720deg); } }
-  @keyframes wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-22deg); } }
-  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft); } 100% { box-shadow: 0 0 0 10px transparent; } }
+  /* Fuss */
+  footer { display: grid; gap: 10px; color: var(--muted); font-size: .9rem; }
+  .paws { display: flex; gap: 16px; height: 30px; align-items: center; }
+  .paws span { width: 17px; height: 17px; opacity: .25; animation: step 4.2s ease-in-out infinite; animation-delay: calc(var(--i) * .38s); }
+  .paws span:nth-child(odd) { transform: translateY(-5px) rotate(100deg); } .paws span:nth-child(even) { transform: translateY(5px) rotate(80deg); }
+  .paws svg { width: 100%; height: 100%; display: block; fill: var(--accent); }
+  footer .joke { font-size: .82rem; }
 
-  @media (max-width: 600px) {
-    main { padding-top: 36px; }
-    .card { padding: 22px 18px; }
-    .hero { grid-template-columns: 1fr; }
-    .scene { margin: 0 auto; max-width: 230px; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes glow { 50% { transform: scale(1.06); } }
+  @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+  @keyframes drift { from { transform: translateX(-150px); } to { transform: translateX(870px); } }
+  @keyframes sway { from { transform: rotate(calc(var(--sw, 1deg) * -1)); } to { transform: rotate(var(--sw, 1deg)); } }
+  @keyframes flutter { from { transform: rotate(-5deg); } to { transform: rotate(6deg); } }
+  @keyframes fall {
+    0% { transform: translate(var(--x), -20px) rotate(0deg); opacity: 0; } 6% { opacity: .95; }
+    50% { transform: translate(calc(var(--x) + var(--dx)), 205px) rotate(200deg); } 94% { opacity: .95; }
+    100% { transform: translate(var(--x), 432px) rotate(380deg); opacity: 0; }
+  }
+  @keyframes flutterby { 0%, 100% { transform: translate(0, 0); } 22% { transform: translate(64px, -46px); } 48% { transform: translate(128px, -8px); } 74% { transform: translate(52px, -70px); } }
+  @keyframes flap { from { transform: scaleX(1); } to { transform: scaleX(.3); } }
+  @keyframes firefly { 0%, 100% { transform: translate(0, 0); opacity: .1; } 50% { transform: translate(14px, -20px); opacity: 1; } }
+  @keyframes climb { 0%, 12%, 100% { transform: translateY(0); } 50%, 62% { transform: translateY(-48px); } }
+  @keyframes tilt { from { transform: rotate(-6deg); } to { transform: rotate(7deg); } }
+  @keyframes breathe { 50% { transform: scale(1.012, 1.022); } }
+  @keyframes nod { 0%, 100% { transform: rotate(0) translateY(0); } 28% { transform: rotate(-2.4deg) translateY(1.5px); } 62% { transform: rotate(1.6deg) translateY(.5px); } }
+  @keyframes wiggle { 0%, 68%, 100% { transform: rotate(0); } 74% { transform: rotate(-12deg); } 80% { transform: rotate(9deg); } 86% { transform: rotate(0); } }
+  @keyframes blink { 0%, 91%, 100% { transform: scaleY(1); } 94%, 96% { transform: scaleY(.08); } }
+  @keyframes glance { 0%, 54%, 100% { transform: translate(1.6px, 2.8px); } 60%, 76% { transform: translate(0, 0); } 82%, 92% { transform: translate(-2.6px, .6px); } }
+  @keyframes scribble { from { transform: rotate(-2deg); } to { transform: rotate(2.6deg); } }
+  @keyframes steam { 0% { opacity: 0; transform: translateY(4px); } 30% { opacity: .65; } 100% { opacity: 0; transform: translateY(-16px); } }
+  @keyframes ink1 { 0% { stroke-dashoffset: 1.15; opacity: 1; } 20%, 84% { stroke-dashoffset: 0; opacity: 1; } 85%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+  @keyframes ink2 { 0%, 24% { stroke-dashoffset: 1.15; opacity: 1; } 44%, 84% { stroke-dashoffset: 0; opacity: 1; } 85%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+  @keyframes ink3 { 0%, 48% { stroke-dashoffset: 1.15; opacity: 1; } 64%, 84% { stroke-dashoffset: 0; opacity: 1; } 85%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+  @keyframes flyoff { 0%, 84% { opacity: 0; transform: translate(0, 0) rotate(0); } 85% { opacity: 1; transform: translate(0, 0) rotate(0); } 100% { opacity: 0; transform: translate(150px, -200px) rotate(55deg); } }
+  @keyframes hop { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-20px); } 70% { transform: translateY(2px); } }
+  @keyframes bubble { 50% { transform: translateY(-4px); } }
+  @keyframes caret { 50% { opacity: 0; } }
+  @keyframes pop { 0% { transform: translate(0, 0) scale(.3) rotate(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(1.1) rotate(var(--rot)); opacity: 0; } }
+  @keyframes bob { 50% { transform: translateY(-2px) rotate(-3deg); } }
+  @keyframes waddle { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--heart) 55%, transparent); } 100% { box-shadow: 0 0 0 11px transparent; } }
+  @keyframes wave { 50% { transform: rotate(-24deg); } }
+  @keyframes floatheart { 0% { opacity: 0; transform: translateY(8px) scale(.7); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.05); } }
+  @keyframes step { 0%, 60%, 100% { opacity: .22; } 10%, 34% { opacity: 1; } }
+
+  @media (max-width: 640px) {
+    .wrap { padding-block: 30px 44px; gap: 26px; }
+    .stage { aspect-ratio: 1 / .8; border-radius: 22px; }
+    .bubble { left: auto; right: 8px; top: 8px; width: 10.4em; min-height: 3.3em; font-size: .8rem; border-radius: 14px; padding: .5em .75em; }
+    .path { padding: 22px 18px 24px; }
+    .trail { --dir: v; padding-top: 0; padding-left: 64px; }
+    .stalk { left: 36px; right: auto; top: 6px; bottom: 6px; width: 12px; height: auto; background: repeating-linear-gradient(180deg, var(--bamboo-far) 0 60px, var(--line) 60px 63px); }
+    .grown { right: 0; bottom: auto; width: auto; height: calc(var(--pos, 64%) - 6px); background: repeating-linear-gradient(180deg, var(--bamboo) 0 60px, var(--bamboo-deep) 60px 63px); }
+    .walker { left: -6px; top: calc(var(--pos, 64%) - 22px); }
+    .trail.go .grown { transition: height 2.6s cubic-bezier(.45, .05, .3, 1); }
+    .trail.go .walker { transition: top 2.6s cubic-bezier(.45, .05, .3, 1); }
+    .steps { grid-template-columns: 1fr; gap: 20px; }
+    .steps li::before { left: -33px; top: 1px; }
+    .steps li.done::after { left: -25.5px; top: 5px; }
+    .thanks { padding: 20px 18px; gap: 12px; }
+    .waver { width: 78px; height: 73px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; }
-    .steps li { opacity: 1; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .fall, .caret { display: none; }
+    .c1 { transform: translateX(470px); } .c2 { transform: translateX(120px); } .c3 { transform: translateX(640px); }
   }
 </style>
+
 </head>
 <body>
-<main>
-  <p class="eyebrow">Masterarbeit · FernUni Schweiz</p>
-  <h1>Einfluss von CBM auf metakognitive Kalibrierung, Lernleistung und Motivation</h1>
-  <div class="rule"></div>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Masterarbeit · FernUni Schweiz</p>
+    <h1>Einfluss von CBM auf metakognitive Kalibrierung, Lernleistung und Motivation</h1>
+  </header>
 
-  <section class="card hero" aria-label="Stand der Arbeit">
-    <svg class="scene" viewBox="0 0 250 220" role="img" aria-label="Ein Panda schreibt an der Masterarbeit">
-      <!-- Bambus -->
-      <g class="bamboo">
-        <rect x="18" y="30" width="12" height="172" rx="5" fill="var(--bamboo)"/>
-        <rect x="17" y="72" width="14" height="3" rx="1.5" fill="var(--bamboo-dark)"/>
-        <rect x="17" y="114" width="14" height="3" rx="1.5" fill="var(--bamboo-dark)"/>
-        <rect x="17" y="156" width="14" height="3" rx="1.5" fill="var(--bamboo-dark)"/>
-        <ellipse cx="44" cy="58" rx="16" ry="5" transform="rotate(-30 44 58)" fill="var(--bamboo)"/>
-        <ellipse cx="6" cy="100" rx="14" ry="4.5" transform="rotate(30 6 100)" fill="var(--bamboo)"/>
-        <ellipse cx="42" cy="132" rx="14" ry="4.5" transform="rotate(-25 42 132)" fill="var(--bamboo-dark)"/>
-      </g>
-      <!-- Körper -->
-      <ellipse cx="128" cy="168" rx="56" ry="40" fill="#ffffff" stroke="var(--panda-edge)" stroke-width="2"/>
-      <path d="M78 150 Q128 128 178 150 L178 170 Q128 150 78 170 Z" fill="#1a1a1a"/>
-      <!-- Kopf -->
-      <g class="head">
-        <circle class="ear" cx="92" cy="50" r="17" fill="#1a1a1a" stroke="var(--panda-edge)" stroke-width="1.5"/>
-        <circle class="ear r" cx="164" cy="50" r="17" fill="#1a1a1a" stroke="var(--panda-edge)" stroke-width="1.5"/>
-        <ellipse cx="128" cy="90" rx="52" ry="46" fill="#ffffff" stroke="var(--panda-edge)" stroke-width="2"/>
-        <ellipse cx="108" cy="90" rx="13" ry="17" transform="rotate(-28 108 90)" fill="#1a1a1a"/>
-        <ellipse cx="148" cy="90" rx="13" ry="17" transform="rotate(28 148 90)" fill="#1a1a1a"/>
-        <g class="eye"><circle cx="110" cy="88" r="5" fill="#ffffff"/><circle cx="111" cy="89" r="3" fill="#1a1a1a"/><circle cx="112.2" cy="87.6" r="1.1" fill="#ffffff"/></g>
-        <g class="eye"><circle cx="146" cy="88" r="5" fill="#ffffff"/><circle cx="147" cy="89" r="3" fill="#1a1a1a"/><circle cx="148.2" cy="87.6" r="1.1" fill="#ffffff"/></g>
-        <ellipse cx="128" cy="105" rx="6.5" ry="4.5" fill="#1a1a1a"/>
-        <path d="M121 112 Q128 119 135 112" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <circle cx="95" cy="108" r="6.5" fill="var(--blush)" opacity=".75"/>
-        <circle cx="161" cy="108" r="6.5" fill="var(--blush)" opacity=".75"/>
-      </g>
-      <!-- Pult -->
-      <rect x="0" y="182" width="250" height="38" rx="8" fill="var(--desk)"/>
-      <rect x="0" y="182" width="250" height="6" rx="3" fill="var(--desk-edge)"/>
-      <!-- Blatt -->
-      <g transform="rotate(-5 160 172)">
-        <rect x="128" y="160" width="74" height="30" rx="3" fill="#ffffff" stroke="var(--panda-edge)" stroke-width="1.5"/>
-        <rect class="ink" x="134" y="167" width="56" height="3.5" rx="1.75" fill="var(--accent)" opacity=".55"/>
-        <rect class="ink b" x="134" y="174" width="50" height="3.5" rx="1.75" fill="var(--accent)" opacity=".55"/>
-        <rect class="ink c" x="134" y="181" width="36" height="3.5" rx="1.75" fill="var(--accent)" opacity=".55"/>
-      </g>
-      <!-- Fliegendes Blatt und Herz -->
-      <rect class="fly" x="196" y="140" width="18" height="22" rx="2" fill="#ffffff" stroke="var(--panda-edge)" stroke-width="1.5"/>
-      <path class="heart" d="M196 52 c-4 -6 -14 -2 -10 6 l10 9 l10 -9 c4 -8 -6 -12 -10 -6 z" fill="#e8657e"/>
-      <!-- Pfoten -->
-      <ellipse cx="88" cy="184" rx="17" ry="11" fill="#1a1a1a"/>
-      <g class="arm">
-        <ellipse cx="160" cy="180" rx="17" ry="11" fill="#1a1a1a"/>
-        <g transform="rotate(30 172 170)">
-          <rect x="169" y="146" width="7" height="30" rx="2" fill="#f2c14e"/>
-          <rect x="169" y="146" width="7" height="5" rx="1.5" fill="#e8657e"/>
-          <polygon points="169,176 176,176 172.5,184" fill="#e9cfa7"/>
-          <polygon points="171.2,180.5 173.8,180.5 172.5,184" fill="#1a1a1a"/>
-        </g>
-      </g>
-      <!-- Tasse mit Dampf -->
-      <path class="steam" d="M222 140 q-5 -6 0 -12 q5 -6 0 -12" stroke="var(--muted)" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path class="steam b" d="M231 140 q-5 -6 0 -12 q5 -6 0 -12" stroke="var(--muted)" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <rect x="214" y="148" width="26" height="26" rx="5" fill="var(--accent)"/>
-      <path d="M240 154 q9 0 9 7 q0 7 -9 7" stroke="var(--accent)" stroke-width="3.5" fill="none"/>
-    </svg>
-    <div>
-      <h2>Der Forschungspanda schreibt noch</h2>
-      <p class="status" aria-live="polite"><span id="status">Literatur wird gelesen …</span></p>
-      <p class="when">Die fertige Arbeit und eine kurze Präsentation der Ergebnisse finden Sie hier bis Ende Februar 2027.</p>
-      <div class="track" aria-hidden="true">
-        <div class="roller">
-          <svg viewBox="0 0 26 26">
-            <circle cx="6" cy="6" r="4.5" fill="#1a1a1a"/><circle cx="20" cy="6" r="4.5" fill="#1a1a1a"/>
-            <circle cx="13" cy="14" r="11" fill="#ffffff" stroke="#c9d0d6" stroke-width="1"/>
-            <ellipse cx="9" cy="13" rx="2.6" ry="3.4" transform="rotate(-25 9 13)" fill="#1a1a1a"/>
-            <ellipse cx="17" cy="13" rx="2.6" ry="3.4" transform="rotate(25 17 13)" fill="#1a1a1a"/>
-            <circle cx="9.4" cy="12.6" r="1" fill="#fff"/><circle cx="16.6" cy="12.6" r="1" fill="#fff"/>
-            <ellipse cx="13" cy="17" rx="1.6" ry="1.1" fill="#1a1a1a"/>
-          </svg>
-        </div>
-      </div>
+  <figure>
+    <div class="stage" id="stage" tabindex="0" role="button" aria-label="Panda antippen">
+      <svg class="scene" viewBox="0 0 720 420" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ein Panda mit Brille sitzt im Bambushain am Pult und schreibt an der Masterarbeit">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky-top)"/><stop offset="1" style="stop-color:var(--sky-bot)"/></linearGradient></defs>
+<rect width="720" height="420" fill="url(#sky)"/>
+<g class="night" fill="var(--moon)"><circle class="star" cx="483" cy="155" r="2" style="animation-delay:-1.8s"/><circle class="star" cx="621" cy="60" r="1.2" style="animation-delay:-3.2s"/><circle class="star" cx="507" cy="173" r="1.2" style="animation-delay:-0.4s"/><circle class="star" cx="330" cy="48" r="1" style="animation-delay:-2.2s"/><circle class="star" cx="669" cy="22" r="2" style="animation-delay:-3.9s"/><circle class="star" cx="689" cy="169" r="1.2" style="animation-delay:-2.5s"/><circle class="star" cx="561" cy="28" r="1" style="animation-delay:-0.1s"/><circle class="star" cx="267" cy="165" r="1" style="animation-delay:-3.1s"/><circle class="star" cx="354" cy="124" r="1.2" style="animation-delay:-2.1s"/><circle class="star" cx="675" cy="87" r="2" style="animation-delay:-0.0s"/><circle class="star" cx="107" cy="129" r="1.6" style="animation-delay:-1.6s"/><circle class="star" cx="584" cy="33" r="1.6" style="animation-delay:-1.3s"/><circle class="star" cx="255" cy="143" r="1.6" style="animation-delay:-0.1s"/><circle class="star" cx="596" cy="39" r="2" style="animation-delay:-0.4s"/><circle class="star" cx="317" cy="110" r="1" style="animation-delay:-3.8s"/><circle class="star" cx="20" cy="66" r="1.2" style="animation-delay:-3.7s"/><circle class="star" cx="73" cy="132" r="2" style="animation-delay:-3.9s"/><circle class="star" cx="426" cy="119" r="1" style="animation-delay:-2.3s"/><circle class="star" cx="223" cy="184" r="1.6" style="animation-delay:-1.3s"/><circle class="star" cx="338" cy="97" r="1" style="animation-delay:-3.9s"/><circle class="star" cx="140" cy="46" r="1.2" style="animation-delay:-2.8s"/><circle class="star" cx="31" cy="27" r="2" style="animation-delay:-3.2s"/><circle class="star" cx="201" cy="186" r="1.2" style="animation-delay:-1.8s"/><circle class="star" cx="215" cy="199" r="1.2" style="animation-delay:-1.7s"/><circle class="star" cx="412" cy="41" r="2" style="animation-delay:-1.7s"/><circle class="star" cx="237" cy="12" r="1.6" style="animation-delay:-3.5s"/></g>
+<g class="day" transform="translate(196 84)"><g class="rays" stroke="var(--sun-ray)" stroke-width="5" stroke-linecap="round"><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(0)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(30)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(60)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(90)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(120)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(150)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(180)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(210)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(240)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(270)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(300)"/><line x1="0" y1="-46" x2="0" y2="-58" transform="rotate(330)"/></g><circle class="sun" r="33" fill="var(--sun)"/></g>
+<g class="night" transform="translate(196 84)"><circle r="29" fill="var(--moon)"/><circle cx="12" cy="-8" r="25" style="fill:var(--sky-top)"/></g>
+<g class="cloud c1" fill="var(--cloud)"><g transform="translate(0 62) scale(1)"><ellipse cx="0" cy="0" rx="40" ry="16"/><ellipse cx="-28" cy="6" rx="24" ry="11"/><ellipse cx="30" cy="7" rx="26" ry="11"/><ellipse cx="4" cy="-11" rx="22" ry="14"/></g></g>
+<g class="cloud c2" fill="var(--cloud)"><g transform="translate(0 128) scale(0.72)"><ellipse cx="0" cy="0" rx="40" ry="16"/><ellipse cx="-28" cy="6" rx="24" ry="11"/><ellipse cx="30" cy="7" rx="26" ry="11"/><ellipse cx="4" cy="-11" rx="22" ry="14"/></g></g>
+<g class="cloud c3" fill="var(--cloud)"><g transform="translate(0 34) scale(0.55)"><ellipse cx="0" cy="0" rx="40" ry="16"/><ellipse cx="-28" cy="6" rx="24" ry="11"/><ellipse cx="30" cy="7" rx="26" ry="11"/><ellipse cx="4" cy="-11" rx="22" ry="14"/></g></g>
+<path d="M0 300 Q120 232 250 282 T480 270 T720 250 V420 H0Z" fill="var(--hill-far)"/>
+<g class="sway" style="transform-origin:241.5px 350px;--sw:1.18deg;animation-duration:6.8s;animation-delay:-6.0s"><rect x="238" y="96" width="7" height="254" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(241.5 136) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(241.5 188) rotate(205)" fill="var(--bamboo-far)"/></g>
+<g class="sway" style="transform-origin:265.5px 350px;--sw:0.61deg;animation-duration:5.6s;animation-delay:-6.0s"><rect x="262" y="150" width="7" height="200" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(265.5 190) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(265.5 242) rotate(205)" fill="var(--bamboo-far)"/></g>
+<g class="sway" style="transform-origin:469.5px 350px;--sw:0.96deg;animation-duration:6.7s;animation-delay:-0.3s"><rect x="466" y="120" width="7" height="230" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(469.5 160) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(469.5 212) rotate(205)" fill="var(--bamboo-far)"/></g>
+<g class="sway" style="transform-origin:501.5px 350px;--sw:0.69deg;animation-duration:6.3s;animation-delay:-0.1s"><rect x="498" y="78" width="7" height="272" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(501.5 118) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(501.5 170) rotate(205)" fill="var(--bamboo-far)"/></g>
+<g class="sway" style="transform-origin:615.5px 350px;--sw:0.97deg;animation-duration:7.5s;animation-delay:-2.3s"><rect x="612" y="110" width="7" height="240" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(615.5 150) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(615.5 202) rotate(205)" fill="var(--bamboo-far)"/></g>
+<g class="sway" style="transform-origin:107.5px 350px;--sw:0.64deg;animation-duration:5.6s;animation-delay:-3.8s"><rect x="104" y="132" width="7" height="218" rx="3.5" fill="var(--bamboo-far)"/><path d="M0 0 Q11.0 -5.2 22 0 Q11.0 5.2 0 0Z" transform="translate(107.5 172) rotate(-30)" fill="var(--bamboo-far)"/><path d="M0 0 Q10.0 -4.8 20 0 Q10.0 4.8 0 0Z" transform="translate(107.5 224) rotate(205)" fill="var(--bamboo-far)"/></g>
+<path d="M0 342 Q180 292 360 327 T720 312 V420 H0Z" fill="var(--hill-near)"/>
+<path d="M0 374 Q360 352 720 374 V420 H0Z" fill="var(--grass)"/>
+<g class="sway" style="transform-origin:15.5px 408px;--sw:0.80deg;animation-duration:5.6s;animation-delay:-4.2s"><rect x="10" y="168" width="11" height="240" rx="5.5" fill="var(--bamboo)"/><rect x="12.2" y="176" width="2.2" height="224" rx="1.1" fill="var(--leaf)" opacity=".5"/><rect x="8.5" y="198" width="14" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="8.5" y="247" width="14" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="8.5" y="305" width="14" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="8.5" y="359" width="14" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:21.0px 249px;animation-delay:-1.9s"><path d="M0 0 Q18.5 -8.8 37 0 Q18.5 8.8 0 0Z" transform="translate(21.0 249) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q17.0 -8.1 34 0 Q17.0 8.1 0 0Z" transform="translate(21.0 249) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q15.5 -7.4 31 0 Q15.5 7.4 0 0Z" transform="translate(21.0 249) rotate(22)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:80.5px 408px;--sw:1.19deg;animation-duration:5.9s;animation-delay:-0.8s"><rect x="74" y="118" width="13" height="290" rx="6.5" fill="var(--bamboo)"/><rect x="76.6" y="126" width="2.6" height="274" rx="1.3" fill="var(--leaf)" opacity=".5"/><rect x="72.5" y="148" width="16" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="72.5" y="199" width="16" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="72.5" y="254" width="16" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="72.5" y="305" width="16" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="72.5" y="364" width="16" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:87.0px 150px;animation-delay:-0.9s"><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(87.0 150) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(87.0 150) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q16.5 -7.9 33 0 Q16.5 7.9 0 0Z" transform="translate(87.0 150) rotate(22)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:74.0px 256px;animation-delay:-0.7s"><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(74.0 256) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(74.0 256) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q16.5 -7.9 33 0 Q16.5 7.9 0 0Z" transform="translate(74.0 256) rotate(158)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:44.0px 408px;--sw:0.78deg;animation-duration:4.3s;animation-delay:-4.8s"><rect x="36" y="46" width="16" height="362" rx="8.0" fill="var(--bamboo)"/><rect x="39.2" y="54" width="3.2" height="346" rx="1.6" fill="var(--leaf)" opacity=".5"/><rect x="34.5" y="76" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="34.5" y="135" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="34.5" y="192" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="34.5" y="244" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="34.5" y="303" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="34.5" y="358" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:36.0px 137px;animation-delay:-1.8s"><path d="M0 0 Q21.0 -10.0 42 0 Q21.0 10.0 0 0Z" transform="translate(36.0 137) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(36.0 137) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(36.0 137) rotate(158)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:52.0px 246px;animation-delay:-1.3s"><path d="M0 0 Q21.0 -10.0 42 0 Q21.0 10.0 0 0Z" transform="translate(52.0 246) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(52.0 246) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(52.0 246) rotate(22)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:140.0px 408px;--sw:1.09deg;animation-duration:5.4s;animation-delay:-4.6s"><rect x="134" y="100" width="12" height="308" rx="6.0" fill="var(--bamboo)"/><rect x="136.4" y="108" width="2.4" height="292" rx="1.2" fill="var(--leaf)" opacity=".5"/><rect x="132.5" y="130" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="132.5" y="182" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="132.5" y="242" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="132.5" y="302" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="132.5" y="357" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:134.0px 132px;animation-delay:-1.3s"><path d="M0 0 Q19.0 -9.0 38 0 Q19.0 9.0 0 0Z" transform="translate(134.0 132) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q17.5 -8.3 35 0 Q17.5 8.3 0 0Z" transform="translate(134.0 132) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q16.0 -7.6 32 0 Q16.0 7.6 0 0Z" transform="translate(134.0 132) rotate(158)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:146.0px 244px;animation-delay:-2.7s"><path d="M0 0 Q19.0 -9.0 38 0 Q19.0 9.0 0 0Z" transform="translate(146.0 244) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q17.5 -8.3 35 0 Q17.5 8.3 0 0Z" transform="translate(146.0 244) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q16.0 -7.6 32 0 Q16.0 7.6 0 0Z" transform="translate(146.0 244) rotate(22)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:690.0px 408px;--sw:0.76deg;animation-duration:4.7s;animation-delay:-4.6s"><rect x="684" y="122" width="12" height="286" rx="6.0" fill="var(--bamboo)"/><rect x="686.4" y="130" width="2.4" height="270" rx="1.2" fill="var(--leaf)" opacity=".5"/><rect x="682.5" y="152" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="682.5" y="202" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="682.5" y="253" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="682.5" y="305" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="682.5" y="361" width="15" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:684.0px 154px;animation-delay:-2.0s"><path d="M0 0 Q19.0 -9.0 38 0 Q19.0 9.0 0 0Z" transform="translate(684.0 154) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q17.5 -8.3 35 0 Q17.5 8.3 0 0Z" transform="translate(684.0 154) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q16.0 -7.6 32 0 Q16.0 7.6 0 0Z" transform="translate(684.0 154) rotate(158)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:696.0px 255px;animation-delay:-1.8s"><path d="M0 0 Q19.0 -9.0 38 0 Q19.0 9.0 0 0Z" transform="translate(696.0 255) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q17.5 -8.3 35 0 Q17.5 8.3 0 0Z" transform="translate(696.0 255) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q16.0 -7.6 32 0 Q16.0 7.6 0 0Z" transform="translate(696.0 255) rotate(22)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:650.0px 408px;--sw:1.12deg;animation-duration:6.4s;animation-delay:-0.5s"><rect x="642" y="40" width="16" height="368" rx="8.0" fill="var(--bamboo)"/><rect x="645.2" y="48" width="3.2" height="352" rx="1.6" fill="var(--leaf)" opacity=".5"/><rect x="640.5" y="70" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="640.5" y="130" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="640.5" y="179" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="640.5" y="229" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="640.5" y="282" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="640.5" y="337" width="19" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:658.0px 132px;animation-delay:-0.7s"><path d="M0 0 Q21.0 -10.0 42 0 Q21.0 10.0 0 0Z" transform="translate(658.0 132) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(658.0 132) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(658.0 132) rotate(22)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:642.0px 181px;animation-delay:-0.1s"><path d="M0 0 Q21.0 -10.0 42 0 Q21.0 10.0 0 0Z" transform="translate(642.0 181) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(642.0 181) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(642.0 181) rotate(158)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:658.0px 284px;animation-delay:-0.8s"><path d="M0 0 Q21.0 -10.0 42 0 Q21.0 10.0 0 0Z" transform="translate(658.0 284) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q19.5 -9.3 39 0 Q19.5 9.3 0 0Z" transform="translate(658.0 284) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q18.0 -8.6 36 0 Q18.0 8.6 0 0Z" transform="translate(658.0 284) rotate(22)" fill="var(--leaf)"/></g></g>
+<g class="sway" style="transform-origin:579.0px 408px;--sw:1.17deg;animation-duration:6.3s;animation-delay:-2.4s"><rect x="572" y="72" width="14" height="336" rx="7.0" fill="var(--bamboo)"/><rect x="574.8" y="80" width="2.8" height="320" rx="1.4" fill="var(--leaf)" opacity=".5"/><rect x="570.5" y="102" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="570.5" y="153" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="570.5" y="209" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="570.5" y="263" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="570.5" y="322" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><rect x="570.5" y="382" width="17" height="4" rx="2" fill="var(--bamboo-deep)"/><g class="flutter" style="transform-origin:586.0px 104px;animation-delay:-1.6s"><path d="M0 0 Q20.0 -9.5 40 0 Q20.0 9.5 0 0Z" transform="translate(586.0 104) rotate(-34)" fill="var(--leaf)"/><path d="M0 0 Q18.5 -8.8 37 0 Q18.5 8.8 0 0Z" transform="translate(586.0 104) rotate(-8)" fill="var(--bamboo)"/><path d="M0 0 Q17.0 -8.1 34 0 Q17.0 8.1 0 0Z" transform="translate(586.0 104) rotate(22)" fill="var(--leaf)"/></g><g class="flutter" style="transform-origin:572.0px 155px;animation-delay:-2.8s"><path d="M0 0 Q20.0 -9.5 40 0 Q20.0 9.5 0 0Z" transform="translate(572.0 155) rotate(214)" fill="var(--leaf)"/><path d="M0 0 Q18.5 -8.8 37 0 Q18.5 8.8 0 0Z" transform="translate(572.0 155) rotate(188)" fill="var(--bamboo)"/><path d="M0 0 Q17.0 -8.1 34 0 Q17.0 8.1 0 0Z" transform="translate(572.0 155) rotate(158)" fill="var(--leaf)"/></g>
+<g class="climber">
+  <ellipse cx="582" cy="258" rx="21" ry="25" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="1.5"/>
+  <rect x="572" y="222" width="14" height="74" fill="var(--bamboo)"/>
+  <rect x="574.8" y="222" width="2.8" height="74" fill="var(--leaf)" opacity=".5"/>
+  <ellipse cx="577" cy="252" rx="17" ry="6.5" transform="rotate(-12 577 252)" fill="var(--patch)"/>
+  <ellipse cx="578" cy="279" rx="17" ry="7" transform="rotate(10 578 279)" fill="var(--patch)"/>
+  <g class="climber-head">
+    <circle cx="549" cy="212" r="8.5" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="1"/>
+    <circle cx="579" cy="209" r="8.5" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="1"/>
+    <ellipse cx="564" cy="228" rx="22" ry="19.5" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="1.5"/>
+    <ellipse cx="555.5" cy="227" rx="5.6" ry="7.4" transform="rotate(-28 555.5 227)" fill="var(--patch)"/>
+    <ellipse cx="572.5" cy="227" rx="5.6" ry="7.4" transform="rotate(28 572.5 227)" fill="var(--patch)"/>
+    <g class="eye"><circle cx="556.3" cy="226.3" r="2.5" fill="#fff"/><circle cx="556.8" cy="226.8" r="1.4" fill="#111"/></g>
+    <g class="eye"><circle cx="571.7" cy="226.3" r="2.5" fill="#fff"/><circle cx="572.2" cy="226.8" r="1.4" fill="#111"/></g>
+    <ellipse cx="564" cy="234" rx="2.8" ry="2" fill="var(--patch)"/>
+    <path d="M561 238 Q564 241 567 238" stroke="var(--patch)" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <circle cx="549.5" cy="235" r="3.2" fill="var(--blush)" opacity=".8"/>
+    <circle cx="578.5" cy="235" r="3.2" fill="var(--blush)" opacity=".8"/>
+  </g>
+</g></g>
+
+<g class="hopper">
+  <g class="body">
+    <ellipse cx="360" cy="314" rx="98" ry="80" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="2"/>
+    <path d="M292 262 Q360 240 428 262" stroke="var(--patch)" stroke-width="30" fill="none" stroke-linecap="round"/>
+  </g>
+  <g class="head">
+    <circle class="ear" cx="300" cy="138" r="27" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="2"/>
+    <circle class="ear r" cx="420" cy="138" r="27" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="2"/>
+    <ellipse cx="360" cy="192" rx="80" ry="70" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="2"/>
+    <ellipse cx="331" cy="190" rx="20" ry="26" transform="rotate(-30 331 190)" fill="var(--patch)"/>
+    <ellipse cx="389" cy="190" rx="20" ry="26" transform="rotate(30 389 190)" fill="var(--patch)"/>
+    <g class="eye"><circle class="white" cx="333" cy="188" r="9.5" fill="#fff"/>
+      <g class="look"><g class="idle"><circle cx="333" cy="188" r="5.4" fill="#111"/><circle cx="335" cy="186" r="1.8" fill="#fff"/></g></g></g>
+    <g class="eye"><circle class="white" cx="387" cy="188" r="9.5" fill="#fff"/>
+      <g class="look"><g class="idle"><circle cx="387" cy="188" r="5.4" fill="#111"/><circle cx="389" cy="186" r="1.8" fill="#fff"/></g></g></g>
+    <g fill="none" stroke="var(--glasses)" stroke-width="2.6" stroke-linecap="round">
+      <circle cx="333" cy="189" r="18.5"/><circle cx="387" cy="189" r="18.5"/><path d="M351.5 187 Q360 181 368.5 187"/>
+    </g>
+    <ellipse cx="360" cy="218" rx="10" ry="7" fill="var(--patch)"/>
+    <path d="M360 225 V230 M349 230 Q360 241 371 230" stroke="var(--patch)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="298" cy="224" r="11" fill="var(--blush)" opacity=".7"/>
+    <circle cx="422" cy="224" r="11" fill="var(--blush)" opacity=".7"/>
+  </g>
+</g>
+
+<g class="desk">
+  <path d="M178 326 H542 V392 Q542 404 530 404 H190 Q178 404 178 392 Z" fill="var(--wood-edge)"/>
+  <polygon points="200,300 520,300 552,328 168,328" fill="var(--wood)"/>
+  <rect x="168" y="326" width="384" height="7" rx="3.5" fill="var(--wood-dark)"/>
+  <g fill="var(--wood-dark)" opacity=".75">
+    <path d="M0 0 Q14 -7 28 0 Q14 7 0 0Z" transform="translate(360 372) rotate(-150)"/>
+    <path d="M0 0 Q14 -7 28 0 Q14 7 0 0Z" transform="translate(360 372) rotate(-30)"/>
+    <path d="M0 0 Q12 -6 24 0 Q12 6 0 0Z" transform="translate(360 372) rotate(-90)"/>
+  </g>
+</g>
+<g class="books">
+  <rect x="200" y="307" width="68" height="13" rx="3" fill="var(--book-a)"/><rect x="259" y="309.5" width="6" height="8" rx="1" fill="var(--sheet)" opacity=".85"/>
+  <rect x="206" y="294" width="58" height="13" rx="3" fill="var(--book-b)"/><rect x="255" y="296.5" width="6" height="8" rx="1" fill="var(--sheet)" opacity=".85"/>
+  <rect x="198" y="282" width="62" height="12" rx="3" fill="var(--book-c)"/><rect x="251" y="284.5" width="6" height="7" rx="1" fill="var(--sheet)" opacity=".85"/>
+</g>
+<g class="mug">
+  <path class="steam" d="M512 284 q-5 -7 0 -14 q5 -7 0 -14"/>
+  <path class="steam b" d="M524 284 q-5 -7 0 -14 q5 -7 0 -14"/>
+  <path d="M534 300 q11 0 11 8 q0 8 -11 8" stroke="var(--mug)" stroke-width="4" fill="none"/>
+  <rect x="503" y="292" width="32" height="29" rx="6" fill="var(--mug)"/>
+  <path d="M0 0 Q7 -4 14 0 Q7 4 0 0Z" transform="translate(512 309) rotate(-25)" fill="var(--sheet)" opacity=".85"/>
+</g>
+<g class="sheet">
+  <polygon points="398,305 488,303 502,323 406,325" fill="var(--sheet)" stroke="var(--fur-edge)" stroke-width="1.2"/>
+  <g fill="none" stroke="var(--mug)" stroke-width="2.6" stroke-linecap="round" opacity=".7">
+    <path class="ink i1" pathLength="1" d="M409 310 L481 308.4"/>
+    <path class="ink i2" pathLength="1" d="M412 315 L476 313.6"/>
+    <path class="ink i3" pathLength="1" d="M415 320 L460 319"/>
+  </g>
+</g>
+<polygon class="flysheet" points="398,305 488,303 502,323 406,325" fill="var(--sheet)" stroke="var(--fur-edge)" stroke-width="1.2"/>
+<g class="hopper">
+  <path d="M296 268 Q262 288 284 316" stroke="var(--patch)" stroke-width="34" fill="none" stroke-linecap="round"/>
+  <ellipse cx="286" cy="316" rx="22" ry="14" fill="var(--patch)"/>
+  <g class="arm">
+    <g transform="translate(452 327) rotate(30)">
+      <rect x="-4" y="-50" width="8" height="40" fill="var(--pencil)"/>
+      <rect x="-4" y="-57" width="8" height="8" rx="2" fill="var(--heart)"/>
+      <polygon points="-4,-10 4,-10 0,0" fill="var(--wood)"/>
+      <polygon points="-1.6,-4 1.6,-4 0,0" fill="#222"/>
+    </g>
+    <path d="M424 268 Q462 288 440 314" stroke="var(--patch)" stroke-width="34" fill="none" stroke-linecap="round"/>
+    <ellipse cx="440" cy="314" rx="21" ry="14" fill="var(--patch)"/>
+  </g>
+</g>
+<g class="fall" style="--x:406px;--dx:9px;animation-duration:15.7s;animation-delay:-0.3s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.99)" fill="var(--bamboo)"/></g>
+<g class="fall" style="--x:108px;--dx:9px;animation-duration:11.2s;animation-delay:-16.0s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.73)" fill="var(--bamboo)"/></g>
+<g class="fall" style="--x:85px;--dx:-37px;animation-duration:14.6s;animation-delay:-14.6s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.86)" fill="var(--bamboo)"/></g>
+<g class="fall" style="--x:119px;--dx:36px;animation-duration:15.6s;animation-delay:-0.5s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.92)" fill="var(--leaf)"/></g>
+<g class="fall" style="--x:679px;--dx:27px;animation-duration:11.7s;animation-delay:-0.2s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.73)" fill="var(--leaf)"/></g>
+<g class="fall" style="--x:158px;--dx:-5px;animation-duration:15.2s;animation-delay:-11.7s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.87)" fill="var(--bamboo)"/></g>
+<g class="fall" style="--x:491px;--dx:48px;animation-duration:14.9s;animation-delay:-1.3s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(1.04)" fill="var(--leaf)"/></g>
+<g class="fall" style="--x:357px;--dx:-48px;animation-duration:12.4s;animation-delay:-3.7s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(1.01)" fill="var(--bamboo)"/></g>
+<g class="fall" style="--x:669px;--dx:54px;animation-duration:10.8s;animation-delay:-0.2s"><path d="M-9 0 Q0 -5 9 0 Q0 5 -9 0Z" transform="scale(0.84)" fill="var(--leaf)"/></g>
+
+<g class="day"><g class="butterfly"><g transform="translate(150 236)">
+  <ellipse class="wing l" cx="-6" cy="-2" rx="7" ry="9" fill="var(--heart)"/>
+  <ellipse class="wing r" cx="6" cy="-2" rx="7" ry="9" fill="var(--blush)"/>
+  <rect x="-1" y="-8" width="2" height="13" rx="1" fill="var(--patch)"/>
+</g></g></g>
+<g class="night" fill="var(--glow)"><circle class="fly" cx="590" cy="213" r="2.6" style="animation-delay:-4.5s;animation-duration:5.0s"/><circle class="fly" cx="512" cy="297" r="2.6" style="animation-delay:-5.4s;animation-duration:5.0s"/><circle class="fly" cx="316" cy="220" r="2.6" style="animation-delay:-3.8s;animation-duration:6.4s"/><circle class="fly" cx="265" cy="224" r="2.6" style="animation-delay:-2.3s;animation-duration:5.7s"/><circle class="fly" cx="384" cy="223" r="2.6" style="animation-delay:-0.8s;animation-duration:5.5s"/><circle class="fly" cx="101" cy="186" r="2.6" style="animation-delay:-5.7s;animation-duration:4.8s"/><circle class="fly" cx="233" cy="198" r="2.6" style="animation-delay:-2.7s;animation-duration:4.8s"/><circle class="fly" cx="279" cy="275" r="2.6" style="animation-delay:-2.3s;animation-duration:5.6s"/><circle class="fly" cx="382" cy="329" r="2.6" style="animation-delay:-2.7s;animation-duration:4.2s"/></g>
+<g fill="var(--grass-deep)"><path d="M150 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M162 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M548 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M562 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M300 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M430 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M96 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M632 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/></g>
+      </svg>
+      <div class="bubble" aria-live="polite"><span><span id="say">Literatur wird gelesen …</span><span class="caret" aria-hidden="true"></span></span></div>
+    </div>
+    <figcaption>Der Panda freut sich, wenn Sie ihn antippen.</figcaption>
+  </figure>
+
+  <section class="lead">
+    <h2>Der Forschungspanda schreibt noch</h2>
+    <p>Die fertige Arbeit und eine kurze Präsentation der Ergebnisse finden Sie hier bis Ende Februar 2027.</p>
+  </section>
+
+  <section class="path" aria-label="Ablauf">
+    <h2>Ablauf</h2>
+    <div class="trail" id="trail">
+      <div class="stalk" aria-hidden="true"><div class="grown"></div></div>
+      <div class="walker" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true">
+  <circle cx="10" cy="8" r="5.2" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width=".8"/>
+  <circle cx="27" cy="8" r="5.2" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width=".8"/>
+  <ellipse cx="20" cy="29" rx="12" ry="8.5" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="1"/>
+  <ellipse cx="12" cy="36" rx="5" ry="3.4" fill="var(--patch)"/><ellipse cx="28" cy="36" rx="5" ry="3.4" fill="var(--patch)"/>
+  <ellipse cx="9.5" cy="28" rx="3.6" ry="5.4" transform="rotate(20 9.5 28)" fill="var(--patch)"/>
+  <ellipse cx="30.5" cy="28" rx="3.6" ry="5.4" transform="rotate(-20 30.5 28)" fill="var(--patch)"/>
+  <circle cx="18.5" cy="16" r="12" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="1"/>
+  <ellipse cx="14" cy="15.5" rx="3" ry="4" transform="rotate(-28 14 15.5)" fill="var(--patch)"/>
+  <ellipse cx="23" cy="15.5" rx="3" ry="4" transform="rotate(28 23 15.5)" fill="var(--patch)"/>
+  <circle cx="14.4" cy="15.1" r="1.2" fill="#fff"/><circle cx="22.6" cy="15.1" r="1.2" fill="#fff"/>
+  <ellipse cx="18.5" cy="20" rx="1.8" ry="1.3" fill="var(--patch)"/>
+  <circle cx="10.2" cy="20.5" r="2" fill="var(--blush)" opacity=".8"/><circle cx="26.8" cy="20.5" r="2" fill="var(--blush)" opacity=".8"/>
+</svg></div>
+      <ol class="steps">
+        <li class="done"><b>Test 1</b><small>6. Oktober 2026</small></li>
+        <li class="done"><b>Test 2</b><small>28. Oktober 2026</small></li>
+        <li class="done"><b>Test 3</b><small>24. November 2026</small></li>
+        <li class="now"><b>Auswertung und Schreiben</b><small>Dezember 2026 bis Februar 2027</small></li>
+        <li><b>Arbeit und Ergebnisse online</b><small>bis Ende Februar 2027</small></li>
+      </ol>
     </div>
   </section>
 
-  <section class="card" aria-label="Ablauf">
-    <h3>Ablauf</h3>
-    <ol class="steps" id="steps">
-      <li data-date="2026-10-06"><b>Test 1</b><small>6. Oktober 2026</small></li>
-      <li data-date="2026-10-28"><b>Test 2</b><small>28. Oktober 2026</small></li>
-      <li data-date="2026-11-24"><b>Test 3</b><small>24. November 2026</small></li>
-      <li data-date="2026-12-16" data-end="2027-02-28"><b>Auswertung und Schreiben</b><small>Dezember 2026 bis Februar 2027</small></li>
-      <li data-date="2027-02-28"><b>Fertige Arbeit und Ergebnisse auf dieser Seite</b><small>bis Ende Februar 2027</small></li>
-    </ol>
-  </section>
-
-  <section class="card thanks">
-    <svg viewBox="0 0 74 74" aria-hidden="true">
-      <circle cx="18" cy="14" r="9" fill="#1a1a1a"/><circle cx="52" cy="14" r="9" fill="#1a1a1a"/>
-      <circle cx="35" cy="36" r="26" fill="#ffffff" stroke="#c9d0d6" stroke-width="1.5"/>
-      <ellipse cx="25" cy="34" rx="6" ry="8" transform="rotate(-25 25 34)" fill="#1a1a1a"/>
-      <ellipse cx="45" cy="34" rx="6" ry="8" transform="rotate(25 45 34)" fill="#1a1a1a"/>
-      <circle cx="26" cy="33" r="2.4" fill="#fff"/><circle cx="44" cy="33" r="2.4" fill="#fff"/>
-      <ellipse cx="35" cy="44" rx="3.5" ry="2.4" fill="#1a1a1a"/>
-      <path d="M31 49 Q35 53 39 49" stroke="#1a1a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="19" cy="46" r="3.5" fill="#f7a8b8" opacity=".8"/><circle cx="51" cy="46" r="3.5" fill="#f7a8b8" opacity=".8"/>
-      <ellipse class="wave" cx="64" cy="52" rx="7" ry="10" fill="#1a1a1a"/>
-    </svg>
+  <section class="thanks">
     <div>
-      <p class="big">Vielen Dank für Ihre Teilnahme!</p>
+      <h2>Vielen Dank für Ihre Teilnahme!</h2>
       <p>Ohne die Studierenden der Klasse wäre diese Masterarbeit nicht möglich gewesen.</p>
     </div>
+    <svg class="waver" viewBox="0 0 96 90" aria-hidden="true">
+  <path class="h h1" d="M70 20 c-3 -5 -11 -2 -8 5 l8 7 l8 -7 c3 -7 -5 -10 -8 -5z" fill="var(--heart)"/>
+  <path class="h h2" d="M82 34 c-2 -4 -8 -1 -6 4 l6 5 l6 -5 c2 -5 -4 -8 -6 -4z" fill="var(--blush)"/>
+  <ellipse class="paw" cx="76" cy="62" rx="8" ry="13" fill="var(--patch)"/>
+  <circle cx="20" cy="24" r="10" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="1"/>
+  <circle cx="56" cy="24" r="10" fill="var(--patch)" stroke="var(--fur-edge)" stroke-width="1"/>
+  <circle cx="38" cy="48" r="29" fill="var(--fur)" stroke="var(--fur-edge)" stroke-width="1.5"/>
+  <ellipse cx="27" cy="46" rx="7" ry="9" transform="rotate(-28 27 46)" fill="var(--patch)"/>
+  <ellipse cx="49" cy="46" rx="7" ry="9" transform="rotate(28 49 46)" fill="var(--patch)"/>
+  <g class="eye"><circle cx="28" cy="45" r="3" fill="#fff"/><circle cx="28.6" cy="45.6" r="1.6" fill="#111"/></g>
+  <g class="eye"><circle cx="48" cy="45" r="3" fill="#fff"/><circle cx="48.6" cy="45.6" r="1.6" fill="#111"/></g>
+  <ellipse cx="38" cy="57" rx="4" ry="2.8" fill="var(--patch)"/>
+  <path d="M33 62 Q38 68 43 62" stroke="var(--patch)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="20" cy="59" r="4.5" fill="var(--blush)" opacity=".8"/><circle cx="56" cy="59" r="4.5" fill="var(--blush)" opacity=".8"/>
+</svg>
   </section>
 
   <footer>
-    Ramon Füglister · ZAG Winterthur · <a href="mailto:ramon.fueglister@zag.zh.ch">ramon.fueglister@zag.zh.ch</a>
+    <div class="paws" aria-hidden="true"><span style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:4"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:5"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:6"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span></div>
+    <span>Ramon Füglister · ZAG Winterthur</span>
     <span class="joke">Für diese Seite wurde kein Panda überarbeitet. Bambus gab es genug.</span>
   </footer>
 </main>
 <script>
-  // Schritte nach Datum markieren: vorbei = erledigt, der nächste offene Schritt = aktuell.
-  (function () {
-    var items = document.querySelectorAll('#steps li');
-    var today = new Date();
-    var marked = false;
-    items.forEach(function (li, i) {
-      li.style.animationDelay = (0.15 + i * 0.12) + 's';
-      var end = new Date((li.getAttribute('data-end') || li.getAttribute('data-date')) + 'T23:59:59');
-      if (today > end) li.classList.add('done');
-      else if (!marked) { li.classList.add('now'); marked = true; }
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stage = document.getElementById('stage');
+  var say = document.getElementById('say');
+
+  // Sprechblase: wechselnde Meldungen, Buchstabe für Buchstabe getippt.
+  var msgs = [
+    'Literatur wird gelesen …', 'Bambus wird gegessen …', 'Daten werden gezählt …', 'Kommas werden gesetzt …',
+    'Grafiken werden gezeichnet …', 'Tee wird nachgefüllt …', 'Quellen werden geprüft …', 'Kurzes Nickerchen …', 'Weiter geht’s …'
+  ];
+  var cheers = ['Danke fürs Mitmachen!', 'Hihi, das kitzelt!', 'Noch ein Bambus, bitte.', 'Sie waren grossartig!'];
+  var i = 0, c = 0, timer = null;
+  function type(text, done) {
+    var n = 0;
+    (function tick() {
+      n += 1; say.textContent = text.slice(0, n);
+      timer = setTimeout(n < text.length ? tick : done, n < text.length ? 30 + Math.random() * 34 : 2000);
+    })();
+  }
+  function next() { i = (i + 1) % msgs.length; type(msgs[i], next); }
+  function interrupt(text) {
+    clearTimeout(timer);
+    if (reduce) { say.textContent = text; return; }
+    type(text, next);
+  }
+  if (!reduce) timer = setTimeout(next, 2400);
+
+  // Die Augen folgen dem Mauszeiger.
+  var looks = stage.querySelectorAll('.look');
+  var rest = null;
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch' || reduce) return;
+    stage.classList.add('tracking');
+    looks.forEach(function (g) {
+      var r = g.parentNode.querySelector('.white').getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      var d = Math.sqrt(dx * dx + dy * dy) || 1, m = Math.min(3.4, d / 40);
+      g.setAttribute('transform', 'translate(' + (dx / d * m).toFixed(2) + ' ' + (dy / d * m).toFixed(2) + ')');
     });
-  })();
-  // Wechselnde Statusmeldungen des Pandas.
-  (function () {
-    var msgs = [
-      'Literatur wird gelesen …', 'Bambus wird gegessen …', 'Daten werden gezählt …',
-      'Kommas werden gesetzt …', 'Grafiken werden gezeichnet …', 'Tee wird nachgefüllt …',
-      'Quellen werden geprüft …', 'Kurzes Nickerchen …', 'Weiter geht’s …'
-    ];
-    var el = document.getElementById('status');
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var i = 0;
-    setInterval(function () {
-      el.classList.add('out');
-      setTimeout(function () { i = (i + 1) % msgs.length; el.textContent = msgs[i]; el.classList.remove('out'); }, 350);
+    clearTimeout(rest);
+    rest = setTimeout(function () {
+      stage.classList.remove('tracking');
+      looks.forEach(function (g) { g.removeAttribute('transform'); });
     }, 2600);
-  })();
+  }, { passive: true });
+
+  // Antippen: der Panda hüpft, Herzen steigen auf.
+  var HEART = '<svg viewBox="0 0 24 24"><path d="M12 21C5 15.5 2 12 2 8.5A4.5 4.5 0 0 1 12 6.5A4.5 4.5 0 0 1 22 8.5C22 12 19 15.5 12 21Z"/></svg>';
+  function cheer(x, y) {
+    interrupt(cheers[c++ % cheers.length]);
+    if (reduce) return;
+    for (var k = 0; k < 8; k++) {
+      var s = document.createElement('span');
+      s.className = 'pop'; s.innerHTML = HEART;
+      s.style.left = x + 'px'; s.style.top = y + 'px';
+      s.style.setProperty('--dx', Math.round(Math.random() * 130 - 65) + 'px');
+      s.style.setProperty('--dy', Math.round(-60 - Math.random() * 90) + 'px');
+      s.style.setProperty('--rot', Math.round(Math.random() * 60 - 30) + 'deg');
+      s.style.animationDelay = (k * 45) + 'ms';
+      s.addEventListener('animationend', function () { this.remove(); });
+      stage.appendChild(s);
+    }
+    stage.classList.remove('happy'); void stage.offsetWidth; stage.classList.add('happy');
+  }
+  stage.addEventListener('click', function (e) {
+    var r = stage.getBoundingClientRect();
+    var keyboard = e.detail === 0;
+    cheer(keyboard ? r.width / 2 : e.clientX - r.left, keyboard ? r.height * .45 : e.clientY - r.top);
+  });
+  stage.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); var r = stage.getBoundingClientRect(); cheer(r.width / 2, r.height * .45); }
+  });
+
+  // Ablauf: Die Tests sind erledigt. Der kleine Panda steht je nach Datum zwischen
+  // «Auswertung und Schreiben» und «Arbeit und Ergebnisse online».
+  var trail = document.getElementById('trail');
+  var items = trail.querySelectorAll('.steps li');
+  var START = new Date('2026-11-24T00:00:00'), END = new Date('2027-02-28T23:59:59');
+  var today = new Date();
+  var frac = Math.min(1, Math.max(0, (today - START) / (END - START)));
+  if (today > END) { items[3].className = 'done'; items[4].className = 'done'; }
+  function center(k) {
+    var horizontal = getComputedStyle(trail).getPropertyValue('--dir').trim() === 'h';
+    return horizontal ? items[k].offsetLeft + 11 : items[k].offsetTop + 12;
+  }
+  function target() { return center(3) + (center(4) - center(3)) * frac; }
+  function set(px) { trail.style.setProperty('--pos', px.toFixed(1) + 'px'); }
+  if (reduce) { set(target()); }
+  else {
+    set(center(0));
+    setTimeout(function () {
+      trail.classList.add('go', 'walking');
+      set(target());
+      setTimeout(function () { trail.classList.remove('go', 'walking'); }, 2700);
+    }, 700);
+  }
+  window.addEventListener('resize', function () { trail.classList.remove('go', 'walking'); set(target()); });
+})();
 </script>
+
 </body>
 </html>

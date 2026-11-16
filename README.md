@@ -10,4 +10,4 @@ Die fertige Arbeit und eine kurze Präsentation der Ergebnisse finden Sie bis En
 
 Vielen Dank allen Studierenden, die an der Studie teilgenommen haben.
 
-Kontakt: Ramon Füglister, ramon.fueglister@zag.zh.ch
+Ramon Füglister, ZAG Winterthur

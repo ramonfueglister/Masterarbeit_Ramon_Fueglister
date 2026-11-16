@@ -65,7 +65,7 @@
   h1 { font-size: clamp(1.7rem, 5vw, 2.55rem); line-height: 1.14; font-weight: 800; }
   h2 { font-size: 1.45rem; line-height: 1.25; font-weight: 800; }
   .lead { display: grid; gap: 8px; }
-  .lead p { max-width: 60ch; }
+  .lead p { max-width: 46ch; font-family: var(--display); font-size: 1.3rem; line-height: 1.35; font-weight: 700; text-wrap: balance; }
 
   /* Szene */
   figure { margin: 0; display: grid; gap: 8px; }
@@ -357,13 +357,10 @@
 <g class="night" fill="var(--glow)"><circle class="fly" cx="590" cy="213" r="2.6" style="animation-delay:-4.5s;animation-duration:5.0s"/><circle class="fly" cx="512" cy="297" r="2.6" style="animation-delay:-5.4s;animation-duration:5.0s"/><circle class="fly" cx="316" cy="220" r="2.6" style="animation-delay:-3.8s;animation-duration:6.4s"/><circle class="fly" cx="265" cy="224" r="2.6" style="animation-delay:-2.3s;animation-duration:5.7s"/><circle class="fly" cx="384" cy="223" r="2.6" style="animation-delay:-0.8s;animation-duration:5.5s"/><circle class="fly" cx="101" cy="186" r="2.6" style="animation-delay:-5.7s;animation-duration:4.8s"/><circle class="fly" cx="233" cy="198" r="2.6" style="animation-delay:-2.7s;animation-duration:4.8s"/><circle class="fly" cx="279" cy="275" r="2.6" style="animation-delay:-2.3s;animation-duration:5.6s"/><circle class="fly" cx="382" cy="329" r="2.6" style="animation-delay:-2.7s;animation-duration:4.2s"/></g>
 <g fill="var(--grass-deep)"><path d="M150 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M162 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M548 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M562 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M300 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M430 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M96 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/><path d="M632 408 q3 -15 6 0 q3 -20 7 0 q3 -13 6 0Z"/></g>
       </svg>
-      <div class="bubble" aria-live="polite"><span><span id="say">Literatur wird gelesen …</span><span class="caret" aria-hidden="true"></span></span></div>
     </div>
-    <figcaption>Der Panda freut sich, wenn Sie ihn antippen.</figcaption>
   </figure>
 
   <section class="lead">
-    <h2>Der Forschungspanda schreibt noch</h2>
     <p>Die fertige Arbeit und eine kurze Präsentation der Ergebnisse finden Sie hier bis Ende Februar 2027.</p>
   </section>
 
@@ -420,36 +417,12 @@
   <footer>
     <div class="paws" aria-hidden="true"><span style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:4"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:5"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span><span style="--i:6"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="8.5" r="2.6"/><circle cx="12" cy="5.5" r="2.8"/><circle cx="18.5" cy="8.5" r="2.6"/></svg></span></div>
     <span>Ramon Füglister · ZAG Winterthur</span>
-    <span class="joke">Für diese Seite wurde kein Panda überarbeitet. Bambus gab es genug.</span>
   </footer>
 </main>
 <script>
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var stage = document.getElementById('stage');
-  var say = document.getElementById('say');
-
-  // Sprechblase: wechselnde Meldungen, Buchstabe für Buchstabe getippt.
-  var msgs = [
-    'Literatur wird gelesen …', 'Bambus wird gegessen …', 'Daten werden gezählt …', 'Kommas werden gesetzt …',
-    'Grafiken werden gezeichnet …', 'Tee wird nachgefüllt …', 'Quellen werden geprüft …', 'Kurzes Nickerchen …', 'Weiter geht’s …'
-  ];
-  var cheers = ['Danke fürs Mitmachen!', 'Hihi, das kitzelt!', 'Noch ein Bambus, bitte.', 'Sie waren grossartig!'];
-  var i = 0, c = 0, timer = null;
-  function type(text, done) {
-    var n = 0;
-    (function tick() {
-      n += 1; say.textContent = text.slice(0, n);
-      timer = setTimeout(n < text.length ? tick : done, n < text.length ? 30 + Math.random() * 34 : 2000);
-    })();
-  }
-  function next() { i = (i + 1) % msgs.length; type(msgs[i], next); }
-  function interrupt(text) {
-    clearTimeout(timer);
-    if (reduce) { say.textContent = text; return; }
-    type(text, next);
-  }
-  if (!reduce) timer = setTimeout(next, 2400);
 
   // Die Augen folgen dem Mauszeiger.
   var looks = stage.querySelectorAll('.look');
@@ -473,7 +446,6 @@
   // Antippen: der Panda hüpft, Herzen steigen auf.
   var HEART = '<svg viewBox="0 0 24 24"><path d="M12 21C5 15.5 2 12 2 8.5A4.5 4.5 0 0 1 12 6.5A4.5 4.5 0 0 1 22 8.5C22 12 19 15.5 12 21Z"/></svg>';
   function cheer(x, y) {
-    interrupt(cheers[c++ % cheers.length]);
     if (reduce) return;
     for (var k = 0; k < 8; k++) {
       var s = document.createElement('span');
